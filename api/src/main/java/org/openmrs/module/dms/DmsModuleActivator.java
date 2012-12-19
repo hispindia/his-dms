@@ -64,8 +64,7 @@ public class DmsModuleActivator implements ModuleActivator {
 		
 	}
 
-	@Override
-    public void started() {
+	public void started() {
 	    // TODO Auto-generated method stub
 	    
     }
