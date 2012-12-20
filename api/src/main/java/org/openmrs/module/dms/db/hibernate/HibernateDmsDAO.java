@@ -14,7 +14,6 @@
 package org.openmrs.module.dms.db.hibernate;
 
 import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -26,6 +25,7 @@ import org.openmrs.ConceptName;
 import org.openmrs.api.ConceptNameType;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dms.db.DmsDAO;
+import org.openmrs.module.dms.model.DmsOpdUnit;
 
 /**
  * It is a default implementation of {@link DmsDAO}.
@@ -66,5 +66,30 @@ public class HibernateDmsDAO implements DmsDAO {
 				ConceptAnswer.class);
 		criteria.add(Restrictions.eq("concept", conid));
 		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public ConceptName getOpdWardNameByConceptId(Concept con)
+			throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				ConceptName.class);
+		criteria.add(Restrictions.eq("concept", con));
+		criteria.add(Restrictions.like("conceptNameType",
+				ConceptNameType.FULLY_SPECIFIED));
+		return (ConceptName) criteria.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public ConceptName getOpdConcepIdByName(String opdname) throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				ConceptName.class);
+		criteria.add(Restrictions.eq("name", opdname));
+		criteria.add(Restrictions.like("conceptNameType",
+				ConceptNameType.FULLY_SPECIFIED));
+		return (ConceptName) criteria.uniqueResult();
+	}
+
+	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws DAOException {
+		return (DmsOpdUnit) sessionFactory.getCurrentSession().merge(dounit);
 	}
 }

@@ -20,15 +20,24 @@ import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dms.DmsService;
+import org.openmrs.module.dms.model.DmsOpdUnit;
 
 /**
- *  Database methods for {@link DmsService}.
+ * Database methods for {@link DmsService}.
  */
 public interface DmsDAO {
-	
+
 	/*
 	 * Add DAO methods here
 	 */
 	public ConceptName getOpdWardConceptId() throws DAOException;
+
 	public List<ConceptAnswer> getAllOpdList(Concept conid) throws DAOException;
+
+	public ConceptName getOpdWardNameByConceptId(Concept con)
+			throws DAOException;
+
+	public ConceptName getOpdConcepIdByName(String opdname) throws DAOException;
+
+	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws DAOException;
 }

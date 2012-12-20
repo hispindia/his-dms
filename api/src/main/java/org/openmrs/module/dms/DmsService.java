@@ -22,10 +22,12 @@ import org.openmrs.ConceptName;
 import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.dms.model.DmsOpdUnit;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
+ * This service exposes module's core functionality. It is a Spring managed bean
+ * which is configured in moduleApplicationContext.xml.
  * <p>
  * It can be accessed only via Context:<br>
  * <code>
@@ -36,11 +38,18 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface DmsService extends OpenmrsService {
-     
+
 	/*
 	 * Add service methods here
-	 * 
 	 */
 	public ConceptName getOpdWardConceptId() throws APIException;
+
 	public List<ConceptAnswer> getAllOpdList(Concept conid) throws APIException;
+
+	public ConceptName getOpdWardNameByConceptId(Concept con)
+			throws APIException;
+
+	public ConceptName getOpdConcepIdByName(String opdname) throws APIException;
+
+	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws APIException;
 }
