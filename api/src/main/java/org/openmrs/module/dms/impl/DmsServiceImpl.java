@@ -15,6 +15,8 @@ package org.openmrs.module.dms.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.ConceptName;
+import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.dms.DmsService;
 import org.openmrs.module.dms.db.DmsDAO;
@@ -41,4 +43,8 @@ public class DmsServiceImpl extends BaseOpenmrsService implements DmsService {
     public DmsDAO getDao() {
 	    return dao;
     }
+    
+    public ConceptName getOpdWardConceptId() throws APIException {
+		return dao.getOpdWardConceptId();
+	}
 }

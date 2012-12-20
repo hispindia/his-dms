@@ -4,23 +4,35 @@
 <sqldiff version="1.0">
 	<help>
 		USE:
-			The diffs are ordered by data model version number.
-			The script can be run in a top down fashion and is
-			expected to not fail or overwrite old data
-		
+		The diffs are ordered by data model version number.
+		The script can be run in a top down fashion and is
+		expected to not fail or overwrite old data
+
 		EXPECT:
-			- "use business-database-name;" was called prior to
-			   calling this script
+		- "use business-database-name;" was called prior to
+		calling this script
 	</help>
 
-<!-- 
 	<diff>
-		<version>0.0.1</version>
-		<author>Ghanshyam,Sagar Bele</author>
-		<date></date>
-		<description></description>
-		<sql></sql>
+		<version>0.1</version>
+		<author>Ghanshyam, Sagar Bele</author>
+		<date>Dec 19th 2012</date>
+		<description>
+			Add dms_opdunit table
+</description>
+		<sql>
+			CREATE TABLE IF NOT EXISTS dms_opdunit
+			(unit_id INTEGER NOT NULL AUTO_INCREMENT,
+			unit_name VARCHAR(255),
+			opd_concept_id INTEGER,
+			start_time TIME,
+			end_time TIME,
+			opd_day VARCHAR(255),
+			active_date DATETIME,
+			deactive_date DATETIME,
+			user_id INTEGER,
+			PRIMARY KEY (unit_id));
+</sql>
 	</diff>
- -->
-	
+
 </sqldiff>

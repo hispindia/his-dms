@@ -15,8 +15,14 @@ package org.openmrs.module.dms.db.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.openmrs.ConceptName;
+import org.openmrs.api.ConceptNameType;
+import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dms.db.DmsDAO;
+import org.openmrs.module.hospitalcore.model.MiscellaneousService;
 
 /**
  * It is a default implementation of  {@link DmsDAO}.
@@ -39,4 +45,11 @@ public class HibernateDmsDAO implements DmsDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+    
+    public ConceptName getOpdWardConceptId() throws DAOException{
+    	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ConceptName.class);
+		criteria.add(Restrictions.like("name","OPD WARD"));
+		criteria.add(Restrictions.like("conceptNameType",ConceptNameType.FULLY_SPECIFIED));
+		return (ConceptName) criteria.uniqueResult();
+	}
 }

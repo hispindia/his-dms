@@ -45,10 +45,8 @@ public class DmsMainController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String main(Model model){
-		
-		String prefix = Context.getAdministrationService().getGlobalProperty("registration.identifier_prefix");
-		model.addAttribute("idPrefix", prefix);
-		return "/module/dms/main/mainPage";
+
+		return "/module/dms/page/dmsMain";
 	}
 	
 }

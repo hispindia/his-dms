@@ -13,6 +13,8 @@
  */
 package org.openmrs.module.dms;
 
+import org.openmrs.ConceptName;
+import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,4 +35,5 @@ public interface DmsService extends OpenmrsService {
 	 * Add service methods here
 	 * 
 	 */
+	public ConceptName getOpdWardConceptId() throws APIException;
 }
