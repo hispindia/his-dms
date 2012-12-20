@@ -20,9 +20,9 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <div style="border-bottom: 1px solid black; padding-bottom:5px; margin-bottom:10px;">	
-	<a href="dialysisRegistration.form"><spring:message
-				code="dms.registration" /></a>
-	&nbsp; | &nbsp; <a href="dialysisPatienList.form"><spring:message
-				code="dms.patientlist" /></a>
+	<a href="addUnit.form"><spring:message
+				code="dms.addunit" /></a>
+	&nbsp; | &nbsp; <a href="unitList.form"><spring:message
+				code="dms.unitlist" /></a>
 </div>
 <%@ include file="/WEB-INF/template/footer.jsp" %>
