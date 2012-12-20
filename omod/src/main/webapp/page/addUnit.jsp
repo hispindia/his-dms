@@ -29,7 +29,7 @@
 		<tr></tr>
 		<tr>
 			<td>Opd Name</td>
-			<td><input type="text" name="opdname"></td>
+			<td><select name="sel"><option value=""><---Select---></option><option value="${abc.name}"></option></select></td>
 			<td></td>
 			<td>Day</td>
 			<td><input type="text" name="day"></td>

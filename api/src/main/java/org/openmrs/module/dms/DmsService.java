@@ -13,7 +13,13 @@
  */
 package org.openmrs.module.dms;
 
+import java.text.ParseException;
+import java.util.List;
+
+import org.openmrs.Concept;
+import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
+import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,4 +42,5 @@ public interface DmsService extends OpenmrsService {
 	 * 
 	 */
 	public ConceptName getOpdWardConceptId() throws APIException;
+	public List<ConceptAnswer> getAllOpdList(Concept conid) throws APIException;
 }

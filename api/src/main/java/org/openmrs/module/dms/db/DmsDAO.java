@@ -13,6 +13,10 @@
  */
 package org.openmrs.module.dms.db;
 
+import java.util.List;
+
+import org.openmrs.Concept;
+import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dms.DmsService;
@@ -26,4 +30,5 @@ public interface DmsDAO {
 	 * Add DAO methods here
 	 */
 	public ConceptName getOpdWardConceptId() throws DAOException;
+	public List<ConceptAnswer> getAllOpdList(Concept conid) throws DAOException;
 }

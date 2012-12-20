@@ -13,9 +13,15 @@
  */
 package org.openmrs.module.dms.impl;
 
+import java.text.ParseException;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
+import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
+import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.dms.DmsService;
@@ -46,5 +52,9 @@ public class DmsServiceImpl extends BaseOpenmrsService implements DmsService {
     
     public ConceptName getOpdWardConceptId() throws APIException {
 		return dao.getOpdWardConceptId();
+	}
+    
+    public List<ConceptAnswer> getAllOpdList(Concept conid) throws APIException {
+		return dao.getAllOpdList(conid);
 	}
 }

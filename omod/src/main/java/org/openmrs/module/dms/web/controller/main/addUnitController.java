@@ -1,10 +1,13 @@
 package org.openmrs.module.dms.web.controller.main;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
+import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dms.DmsService;
@@ -21,11 +24,14 @@ private Log log = LogFactory.getLog(this.getClass());
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String main(Model model){
+		//model.addAttribute("OPDs", RegistrationWebUtils.getSubConcepts(RegistrationConstants.CONCEPT_NAME_OPD_WARD));
 		DmsService dmsService = Context.getService(DmsService.class);
 		ConceptName con=dmsService.getOpdWardConceptId();
 		Concept conid=con.getConcept();
 		System.out.println(conid+"rrrrrrrrrrrrrrrr----------");
-		//dmsService.getAllOpdList();
+		List<ConceptAnswer> abc=dmsService.getAllOpdList(conid);
+		System.out.println(abc.size()+"yyyyyyyyyyyyyyyyy");
+		model.addAttribute(abc);
 		return "/module/dms/page/addUnit";
 }
 

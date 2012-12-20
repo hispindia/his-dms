@@ -13,43 +13,58 @@
  */
 package org.openmrs.module.dms.db.hibernate;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.Concept;
+import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
 import org.openmrs.api.ConceptNameType;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dms.db.DmsDAO;
-import org.openmrs.module.hospitalcore.model.MiscellaneousService;
 
 /**
- * It is a default implementation of  {@link DmsDAO}.
+ * It is a default implementation of {@link DmsDAO}.
  */
 public class HibernateDmsDAO implements DmsDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
+
 	private SessionFactory sessionFactory;
-	
+
 	/**
-     * @param sessionFactory the sessionFactory to set
-     */
-    public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
-    }
-    
+	 * @param sessionFactory
+	 *            the sessionFactory to set
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	/**
-     * @return the sessionFactory
-     */
-    public SessionFactory getSessionFactory() {
-	    return sessionFactory;
-    }
-    
-    public ConceptName getOpdWardConceptId() throws DAOException{
-    	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ConceptName.class);
-		criteria.add(Restrictions.like("name","OPD WARD"));
-		criteria.add(Restrictions.like("conceptNameType",ConceptNameType.FULLY_SPECIFIED));
+	 * @return the sessionFactory
+	 */
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public ConceptName getOpdWardConceptId() throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				ConceptName.class);
+		criteria.add(Restrictions.like("name", "OPD WARD"));
+		criteria.add(Restrictions.like("conceptNameType",
+				ConceptNameType.FULLY_SPECIFIED));
 		return (ConceptName) criteria.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ConceptAnswer> getAllOpdList(Concept conid) throws DAOException {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				ConceptAnswer.class);
+		criteria.add(Restrictions.eq("concept", conid));
+		return criteria.list();
 	}
 }
