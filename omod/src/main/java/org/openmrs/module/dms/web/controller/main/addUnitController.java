@@ -1,9 +1,9 @@
 package org.openmrs.module.dms.web.controller.main;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
@@ -20,43 +20,56 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/module/dms/addUnit.form")
 public class addUnitController {
-private Log log = LogFactory.getLog(this.getClass());
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String main(Model model){
-		//model.addAttribute("OPDs", RegistrationWebUtils.getSubConcepts(RegistrationConstants.CONCEPT_NAME_OPD_WARD));
-		DmsService dmsService = Context.getService(DmsService.class);
-		ConceptName con=dmsService.getOpdWardConceptId();
-		Concept conid=con.getConcept();
-		System.out.println(conid+"rrrrrrrrrrrrrrrr----------");
-		List<ConceptAnswer> abc=dmsService.getAllOpdList(conid);
-		System.out.println(abc.size()+"yyyyyyyyyyyyyyyyy");
-		model.addAttribute(abc);
-		return "/module/dms/page/addUnit";
-}
+	private Log log = LogFactory.getLog(this.getClass());
 
-	@RequestMapping(method=RequestMethod.POST)
-	public String onSubmit(Model model,HttpServletRequest request){
-		//System.out.println("EEEEEEEEEEEEEEEEE");
-		DmsService dmsService = Context.getService(DmsService.class);	
-		DmsOpdUnit dmsopdunit=new DmsOpdUnit();
-		
-		/*
-		String name=request.getParameter("name");
-		Integer age= Integer.parseInt(request.getParameter("age"));
-		String postaladdress=request.getParameter("postaladdress");
-		Integer phone= Integer.parseInt(request.getParameter("phone"));
-		diareg.setName(name);
-		diareg.setAge(age);
-		diareg.setPostaladdress(postaladdress);
-		diareg.setPhone(phone);
-		System.out.println("name"+"AAAAAAAAAAAAA");
-		System.out.println("age"+"BBBBBBBBBBBBB");
-		System.out.println("postaladdress"+"CCCCCCCCCCCC");
-		System.out.println("phone"+"DDDDDDDDDDDDDD");
-		dialysisService.saveDialysisPatient(diareg);
-		*/
+	@RequestMapping(method = RequestMethod.GET)
+	public String main(Model model) {
+		// model.addAttribute("OPDs",
+		// RegistrationWebUtils.getSubConcepts(RegistrationConstants.CONCEPT_NAME_OPD_WARD));
+		DmsService dmsService = Context.getService(DmsService.class);
+		ConceptName owconid = dmsService.getOpdWardConceptId();
+		Concept conid = owconid.getConcept();
+		List<ConceptAnswer> lconans = dmsService.getAllOpdList(conid);
+		List<ConceptName> lcname = new ArrayList<ConceptName>();
+		for (ConceptAnswer conans : lconans) {
+			Concept con = conans.getAnswerConcept();
+			ConceptName conname = dmsService.getOpdWardNameByConceptId(con);
+			System.out.println(conname + "pppppppppppppppppppp");
+			lcname.add(conname);
+		}
+		model.addAttribute("cnamel", lcname);
+		System.out.println(lcname.size() + "rrrrrrrrrrrrrrrrrrr");
+		return "/module/dms/page/addUnit";
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public String onSubmit(Model model, HttpServletRequest request) {
+		// System.out.println("EEEEEEEEEEEEEEEEE");
+		DmsService dmsService = Context.getService(DmsService.class);
+		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
+
+		String unitno = request.getParameter("unitno");
+		// Integer age=Integer.parseInt(request.getParameter("age"));
+		String opdname = request.getParameter("selopd").toString();
+		System.out.println(unitno + "vvvvvvvvvvvvv");
+		System.out.println(opdname + "wwwwwwwwwwwwww");
+		String day = request.getParameter("selday");
+		System.out.println(day + "xxxxxxxxxxxxxxxx");
+		String starttime = request.getParameter("starttime");
+		String endtime = request.getParameter("endtime");
+		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
+		System.out.println(opdconid.getConcept() + "kkkkkkkkkkk");
+
+		dmsopdunit.setUnitName(unitno);
+		dmsopdunit.setOpdConceptId(opdconid.getConcept());
+		dmsopdunit.setStartTime(starttime);
+		dmsopdunit.setEndTime(endtime);
+		dmsopdunit.setOpdWorkingDay(day);
+		dmsopdunit.setUnitActiveDate(new Date());
+		dmsopdunit.setUnitDeactiveDate(new Date());
+		// dmsopdunit.setUserId(11);
+		dmsService.saveUnit(dmsopdunit);
 		return "/module/dms/page/dmsMain";
-	}	
-	
+	}
+
 }
