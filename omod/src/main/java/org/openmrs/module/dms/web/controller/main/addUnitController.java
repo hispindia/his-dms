@@ -48,16 +48,16 @@ public class addUnitController {
 		String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
-		//String endtime = request.getParameter("endtime");
+		String endtime = request.getParameter("endtime");
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
 		dmsopdunit.setUnitName(unitno);
 		dmsopdunit.setOpdConceptId(opdconid.getConcept());
 		dmsopdunit.setStartTime(starttime);
-		//dmsopdunit.setEndTime(endtime);
+		dmsopdunit.setEndTime(endtime);
 		dmsopdunit.setOpdWorkingDay(day);
 		dmsopdunit.setUnitActiveDate(new Date());
-		dmsopdunit.setUnitDeactiveDate(new Date());
-		// dmsopdunit.setUserId(11);
+		//dmsopdunit.setUnitDeactiveDate(new Date());
+		//dmsopdunit.setUserId(11);
 		dmsService.saveUnit(dmsopdunit);
 		return "/module/dms/page/dmsMain";
 	}
