@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/module/dms/addUnit.form")
-public class addUnitController {
+public class AddUnitController {
 	private Log log = LogFactory.getLog(this.getClass());
 
 	@RequestMapping(method = RequestMethod.GET)
