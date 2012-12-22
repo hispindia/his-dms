@@ -43,14 +43,13 @@ public class AddUnitController {
 		DmsService dmsService = Context.getService(DmsService.class);
 		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
 
-		String unitno = request.getParameter("unitno");
-		// Integer age=Integer.parseInt(request.getParameter("unitno"));
+		Integer unitno = Integer.parseInt(request.getParameter("unitno"));
 		String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
 		String endtime = request.getParameter("endtime");
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
-		dmsopdunit.setUnitName(unitno);
+		dmsopdunit.setUnitNo(unitno);
 		dmsopdunit.setOpdConceptId(opdconid.getConcept());
 		dmsopdunit.setStartTime(starttime);
 		dmsopdunit.setEndTime(endtime);

@@ -26,86 +26,69 @@ import org.openmrs.User;
 
 public class DmsOpdUnit {
 	private Integer id;
-	private String unitName;
+	private Integer unitNo;
 	private Concept opdConceptId;
+	private String opdWorkingDay;
 	private String startTime;
 	private String endTime;
-	private String opdWorkingDay;
 	private Date unitActiveDate;
 	private Date unitDeactiveDate;
 	private User userId;
-
+	
 	// setter and getter
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getUnitName() {
-		return unitName;
+	public Integer getUnitNo() {
+		return unitNo;
 	}
-
-	public void setUnitName(String unitName) {
-		this.unitName = unitName;
+	public void setUnitNo(Integer unitNo) {
+		this.unitNo = unitNo;
 	}
-
 	public Concept getOpdConceptId() {
 		return opdConceptId;
 	}
-
 	public void setOpdConceptId(Concept opdConceptId) {
 		this.opdConceptId = opdConceptId;
 	}
-
-	public String getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-
 	public String getOpdWorkingDay() {
 		return opdWorkingDay;
 	}
-
 	public void setOpdWorkingDay(String opdWorkingDay) {
 		this.opdWorkingDay = opdWorkingDay;
 	}
-
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 	public Date getUnitActiveDate() {
 		return unitActiveDate;
 	}
-
 	public void setUnitActiveDate(Date unitActiveDate) {
 		this.unitActiveDate = unitActiveDate;
 	}
-
 	public Date getUnitDeactiveDate() {
 		return unitDeactiveDate;
 	}
-
 	public void setUnitDeactiveDate(Date unitDeactiveDate) {
 		this.unitDeactiveDate = unitDeactiveDate;
 	}
-
 	public User getUserId() {
 		return userId;
 	}
-
 	public void setUserId(User userId) {
 		this.userId = userId;
 	}
-
+	
 }

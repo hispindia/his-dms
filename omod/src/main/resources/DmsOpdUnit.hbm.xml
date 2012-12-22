@@ -11,11 +11,11 @@
 			unsaved-value="0">
 				<generator class="native"/>
 		</id>
-		<property name="unitName" column="unit_name" />
+		<property name="unitNo" column="unit_no" />
 		<many-to-one name="opdConceptId" column="opd_concept_id" class="org.openmrs.Concept"/>
+		<property name="opdWorkingDay" column="opd_day" />
 		<property name="startTime" column="start_time" />
 		<property name="endTime" column="end_time" />
-		<property name="opdWorkingDay" column="opd_day" />
 		<property name="unitActiveDate" column="active_date" />
 		<property name="unitDeactiveDate" column="deactive_date" />
 		<many-to-one name="userId" column="user_id" class="org.openmrs.User"/>

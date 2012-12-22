@@ -23,11 +23,11 @@
 		<sql>
 			CREATE TABLE IF NOT EXISTS dms_opdunit
 			(unit_id INTEGER NOT NULL AUTO_INCREMENT,
-			unit_name VARCHAR(255),
+			unit_no INTEGER,
 			opd_concept_id INTEGER,
+			opd_day VARCHAR(255),
 			start_time VARCHAR(10),
 			end_time VARCHAR(10),
-			opd_day VARCHAR(255),
 			active_date DATETIME,
 			deactive_date DATETIME,
 			user_id INTEGER,

@@ -21,7 +21,7 @@ public class DeActivateUnitController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String onSubmit(
-			@RequestParam(value = "unitno", required = false) String dunitno,
+			@RequestParam(value = "unitno", required = false) Integer dunitno,
 			@RequestParam(value = "selopd", required = false) String dselopd,
 			@RequestParam(value = "selday", required = false) String dselday,
 			@RequestParam(value = "starttime", required = false) String dstarttime,
@@ -29,8 +29,9 @@ public class DeActivateUnitController {
 			Model model, HttpServletRequest request) {
 		DmsService dmsService = Context.getService(DmsService.class);
 		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
+		
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(dselopd);
-		dmsopdunit.setUnitName(dunitno);
+		dmsopdunit.setUnitNo(dunitno);
 		dmsopdunit.setOpdConceptId(opdconid.getConcept());
 		dmsopdunit.setOpdWorkingDay(dselday);
 		dmsopdunit.setStartTime(dstarttime);
