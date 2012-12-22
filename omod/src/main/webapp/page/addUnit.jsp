@@ -43,13 +43,13 @@
 			<td><select name="selday"><option value="">
 						<-Select Day->
 					</option>
-					<option value="monday">monday</option>
-					<option value="tuesday">tuesday</option>
-					<option value="wednesday">wednesday</option>
-					<option value="thursday">thursday</option>
-					<option value="friday">friday</option>
-					<option value="saturday">saturday</option>
-					<option value="sunday">sunday</option>
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Friday">Friday</option>
+					<option value="Saturday">Saturday</option>
+					<option value="Sunday">Sunday</option>
 			</td>
 			<td></td>
 			<td></td>
