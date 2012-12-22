@@ -105,7 +105,7 @@
 		<tr>
 			<td><input type="submit" value="Active"></td>
 			<td><input type="button" value="Deactive" onclick="deActivateUnit();"></td>
-			<td><input type="button" value="Reset"></td>
+			<td><input type="button" value="Reset" onclick="window.location.href=window.location.href"></td>
 			<td><input type="button" value="Edit"></td>
 		</tr>
 	</table>
