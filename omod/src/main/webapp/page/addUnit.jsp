@@ -19,30 +19,58 @@
 --%>
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
+<script type="text/javascript">
+// get context path in order to build controller url
+	function getContextPath(){	
+		var pn = location.pathname;
+		var len = pn.indexOf("/", 1);				
+		var cp = pn.substring(0, len);
+		return cp;
+	}
+</script>
+<script type="text/javascript">	
+	// get all form data
+	function deActivateUnit(){
+		var unitno= jQuery("#unitno").val();
+		var selopd = jQuery("#selopd").val();
+		var selday = jQuery("#selday").val();
+		var starttime= jQuery("#starttime").val();
+		var endtime = jQuery("#endtime").val();
+			jQuery.ajax({
+			type : "GET",
+		    url : getContextPath() + "/module/dms/deActivateUnit.form",
+			data : ({
+				unitno			: unitno,
+				selopd			: selopd,
+				selday	        : selday,
+				starttime		: starttime,
+				endtime		    : endtime
+			})
+		});
+
+	}
+</script>
 <h2>Add Unit</h2>
 <form id="unitAddForm" method="POST">
 	<table>
 		<tr>
 			<td>Unit No</td>
-			<td><input type="text" name="unitno">
-			</td>
+			<td><input type="text" id="unitno" name="unitno"></td>
 		</tr>
 		<tr></tr>
 		<tr>
 			<td>Opd Name</td>
-			<td><select name="selopd"><option value=""><-------Select
+			<td><select id="selopd" name="selopd"><option value=""><-------Select
 						Opd-------></option>
 					<c:forEach items="${cnamel}" var="cnl">
 						<option value="${cnl.name}">${cnl.name}</option>
 					</c:forEach>
-			</select>
-			</td>
+			</select></td>
 			<td></td>
 
 			<td>Day</td>
-			<td><select name="selday"><option value="">
-						<-Select Day->
-					</option>
+			<td><select id="selday" name="selday"><option value="">
+						<-Select Day-></option>
 					<option value="Monday">Monday</option>
 					<option value="Tuesday">Tuesday</option>
 					<option value="Wednesday">Wednesday</option>
@@ -60,15 +88,13 @@
 			<td></td>
 			<td></td>
 			<td>Start Time</td>
-			<td><input type="text" name="starttime">
-			</td>
+			<td><input type="text" id="starttime" name="starttime"></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>End Time</td>
-			<td><input type="text" name="endtime">
-			</td>
+			<td><input type="text" id="endtime" name="endtime"></td>
 		</tr>
 		<tr></tr>
 		<tr>
@@ -77,14 +103,10 @@
 		</tr>
 		<tr></tr>
 		<tr>
-			<td><input type="submit" value="Active">
-			</td>
-			<td><input type="button" value="Deactive">
-			</td>
-			<td><input type="button" value="Reset">
-			</td>
-			<td><input type="button" value="Edit">
-			</td>
+			<td><input type="submit" value="Active"></td>
+			<td><input type="button" value="Deactive" onclick="deActivateUnit();"></td>
+			<td><input type="button" value="Reset"></td>
+			<td><input type="button" value="Edit"></td>
 		</tr>
 	</table>
 </form>
