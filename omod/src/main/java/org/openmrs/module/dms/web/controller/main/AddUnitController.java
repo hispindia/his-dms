@@ -42,23 +42,44 @@ public class AddUnitController {
 	public String onSubmit(Model model, HttpServletRequest request) {
 		DmsService dmsService = Context.getService(DmsService.class);
 		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
-
+		
 		Integer unitno = Integer.parseInt(request.getParameter("unitno"));
 		String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
 		String endtime = request.getParameter("endtime");
+		
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
-		dmsopdunit.setUnitNo(unitno);
-		dmsopdunit.setOpdConceptId(opdconid.getConcept());
-		dmsopdunit.setStartTime(starttime);
-		dmsopdunit.setEndTime(endtime);
-		dmsopdunit.setOpdWorkingDay(day);
-		dmsopdunit.setUnitActiveDate(new Date());
-		//dmsopdunit.setUnitDeactiveDate(new Date());
-		//dmsopdunit.setUserId(11);
-		dmsService.saveUnit(dmsopdunit);
-		return "/module/dms/page/dmsMain";
+		
+		dmsopdunit = dmsService.getDmsOpd(unitno, opdconid.getConcept(),
+				day, starttime, endtime);
+		
+		if (dmsopdunit!= null) {
+			dmsopdunit.setUnitActiveDate(new Date());
+			dmsopdunit.setUnitDeactiveDate(null);
+			dmsService.saveUnit(dmsopdunit);
+			return "redirect:/module/dms/addUnit.form";
+		} else {
+			Integer unitno2 = Integer.parseInt(request.getParameter("unitno"));
+			String opdname2 = request.getParameter("selopd").toString();
+			String day2 = request.getParameter("selday");
+			String starttime2 = request.getParameter("starttime");
+			String endtime2 = request.getParameter("endtime");
+			
+			ConceptName opdconid2 = dmsService.getOpdConcepIdByName(opdname2);
+			
+			DmsOpdUnit dmsopdunit2 = new DmsOpdUnit();
+			
+			dmsopdunit2.setUnitNo(unitno2);
+			dmsopdunit2.setOpdConceptId(opdconid2.getConcept());
+			dmsopdunit2.setOpdWorkingDay(day2);
+			dmsopdunit2.setStartTime(starttime2);
+			dmsopdunit2.setEndTime(endtime2);
+			dmsopdunit2.setUnitActiveDate(new Date());
+			//dmsopdunit.setUserId(11);
+			dmsService.saveUnit(dmsopdunit2);
+			return "/module/dms/page/dmsMain";
+		}
 	}
 
 }

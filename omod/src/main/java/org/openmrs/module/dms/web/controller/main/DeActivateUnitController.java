@@ -31,8 +31,10 @@ public class DeActivateUnitController {
 		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
 
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(dselopd);
+
 		dmsopdunit = dmsService.getDmsOpd(dunitno, opdconid.getConcept(),
 				dselday, dstarttime, dendtime);
+
 		if (dmsopdunit.getId() != null) {
 			dmsopdunit.setUnitActiveDate(null);
 			dmsopdunit.setUnitDeactiveDate(new Date());
