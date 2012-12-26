@@ -101,10 +101,12 @@
 			</td>
 		</tr>
 		<tr></tr>
+		<%--
 		<tr>
 			<td><input type="button" name="addopd" value="Add Opd">
 			</td>
 		</tr>
+		--%>
 		<tr></tr>
 		<tr>
 			<td><input type="submit" value="Active">
