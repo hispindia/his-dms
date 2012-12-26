@@ -29,17 +29,17 @@ public class DeActivateUnitController {
 			Model model, HttpServletRequest request) {
 		DmsService dmsService = Context.getService(DmsService.class);
 		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
-		
+
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(dselopd);
-		dmsopdunit=dmsService.getDmsOpd(dunitno, opdconid.getConcept(), dselday, dstarttime, dendtime);
-		if(dmsopdunit.getId()!=null){
-		dmsopdunit.setUnitActiveDate(null);
-		dmsopdunit.setUnitDeactiveDate(new Date());
-		dmsService.saveUnit(dmsopdunit);
-		return "redirect:/module/dms/addUnit.form";
-	}
-		else{
+		dmsopdunit = dmsService.getDmsOpd(dunitno, opdconid.getConcept(),
+				dselday, dstarttime, dendtime);
+		if (dmsopdunit.getId() != null) {
+			dmsopdunit.setUnitActiveDate(null);
+			dmsopdunit.setUnitDeactiveDate(new Date());
+			dmsService.saveUnit(dmsopdunit);
+			return "redirect:/module/dms/addUnit.form";
+		} else {
 			return "/module/dms/page/dmsMain";
-			}
 		}
+	}
 }
