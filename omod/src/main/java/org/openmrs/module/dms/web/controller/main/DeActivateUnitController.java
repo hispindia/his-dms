@@ -31,15 +31,15 @@ public class DeActivateUnitController {
 		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
 		
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(dselopd);
-		dmsopdunit.setUnitNo(dunitno);
-		dmsopdunit.setOpdConceptId(opdconid.getConcept());
-		dmsopdunit.setOpdWorkingDay(dselday);
-		dmsopdunit.setStartTime(dstarttime);
-		dmsopdunit.setEndTime(dendtime);
-		// dmsopdunit.setUnitActiveDate(new Date());
+		dmsopdunit=dmsService.getDmsOpd(dunitno, opdconid.getConcept(), dselday, dstarttime, dendtime);
+		if(dmsopdunit.getId()!=null){
+		dmsopdunit.setUnitActiveDate(null);
 		dmsopdunit.setUnitDeactiveDate(new Date());
-		// dmsopdunit.setUserId(11);
 		dmsService.saveUnit(dmsopdunit);
-		return "/module/dms/page/dmsMain";
+		return "redirect:/module/dms/addUnit.form";
 	}
+		else{
+			return "/module/dms/page/dmsMain";
+			}
+		}
 }

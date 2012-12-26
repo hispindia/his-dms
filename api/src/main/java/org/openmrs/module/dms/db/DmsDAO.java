@@ -38,6 +38,8 @@ public interface DmsDAO {
 			throws DAOException;
 
 	public ConceptName getOpdConcepIdByName(String opdname) throws DAOException;
+	
+	public DmsOpdUnit getDmsOpd(Integer unitno,Concept opdconid,String day,String starttime,String endtime) throws DAOException;
 
 	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws DAOException;
 }

@@ -65,6 +65,10 @@ public class DmsServiceImpl extends BaseOpenmrsService implements DmsService {
 	public ConceptName getOpdConcepIdByName(String opdname) throws APIException {
 		return dao.getOpdConcepIdByName(opdname);
 	}
+	
+	public DmsOpdUnit getDmsOpd(Integer unitno,Concept opdconid,String day,String starttime,String endtime) throws APIException {
+		return dao.getDmsOpd(unitno,opdconid,day,starttime,endtime);
+	}
 
 	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws APIException {
 		return dao.saveUnit(dounit);

@@ -88,8 +88,21 @@ public class HibernateDmsDAO implements DmsDAO {
 				ConceptNameType.FULLY_SPECIFIED));
 		return (ConceptName) criteria.uniqueResult();
 	}
+	
+	@SuppressWarnings("unchecked")
+		public DmsOpdUnit getDmsOpd(Integer unitno,Concept opdconid,String day,String starttime,String endtime) throws DAOException {
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+					DmsOpdUnit.class);
+			criteria.add(Restrictions.eq("unitNo", unitno));
+			criteria.add(Restrictions.eq("opdConceptId", opdconid));
+			criteria.add(Restrictions.eq("opdWorkingDay", day));
+			criteria.add(Restrictions.eq("startTime", starttime));
+			criteria.add(Restrictions.eq("endTime", endtime));
+			return (DmsOpdUnit) criteria.uniqueResult();
+		}
 
 	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws DAOException {
-		return (DmsOpdUnit) sessionFactory.getCurrentSession().merge(dounit);
+		sessionFactory.getCurrentSession().saveOrUpdate(dounit);
+		return dounit;
 	}
 }
