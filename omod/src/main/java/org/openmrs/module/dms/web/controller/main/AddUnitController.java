@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
@@ -12,6 +14,7 @@ import org.openmrs.ConceptName;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dms.DmsService;
 import org.openmrs.module.dms.model.DmsOpdUnit;
+import org.openmrs.web.WebConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,10 +57,18 @@ public class AddUnitController {
 		dmsopdunit = dmsService.getDmsOpd(unitno, opdconid.getConcept(),
 				day, starttime, endtime);
 		
+		HttpSession httpSession = request.getSession();
+		
 		if (dmsopdunit!= null) {
+			if(dmsopdunit.getUnitActiveDate()==null){
 			dmsopdunit.setUnitActiveDate(new Date());
 			dmsopdunit.setUnitDeactiveDate(null);
 			dmsService.saveUnit(dmsopdunit);
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
+			}
+			else{
+				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.failure");
+			}
 			return "redirect:/module/dms/addUnit.form";
 		} else {
 			Integer unitno2 = Integer.parseInt(request.getParameter("unitno"));
@@ -78,6 +89,7 @@ public class AddUnitController {
 			dmsopdunit2.setUnitActiveDate(new Date());
 			//dmsopdunit.setUserId(11);
 			dmsService.saveUnit(dmsopdunit2);
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
 			return "/module/dms/page/dmsMain";
 		}
 	}
