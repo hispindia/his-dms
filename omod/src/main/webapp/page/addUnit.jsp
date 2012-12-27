@@ -55,8 +55,7 @@
 	<table>
 		<tr>
 			<td>Unit No</td>
-			<td><input type="text" id="unitno" name="unitno">
-			</td>
+			<td><input type="text" id="unitno" name="unitno"></td>
 		</tr>
 		<tr></tr>
 		<tr>
@@ -66,8 +65,7 @@
 					<c:forEach items="${cnamel}" var="cnl">
 						<option value="${cnl.name}">${cnl.name}</option>
 					</c:forEach>
-			</select>
-			</td>
+			</select></td>
 			<td></td>
 
 			<td>Day</td>
@@ -80,7 +78,8 @@
 					<option value="Friday">Friday</option>
 					<option value="Saturday">Saturday</option>
 					<option value="Sunday">Sunday</option>
-			</select></td>
+			</select>
+			</td>
 			<td></td>
 			<td></td>
 			<td></td>
@@ -90,14 +89,17 @@
 			<td></td>
 			<td></td>
 			<td>Start Time</td>
-			<td><input type="text" id="starttime" name="starttime">
-			</td>
+			<td><input type="text" id="starttime" name="starttime"
+				value="0:00:00"></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>End Time</td>
-			<td><input type="text" id="endtime" name="endtime">
+			<td><input type="text" id="endtime" name="endtime"
+				value="23:59:59"></td>
+			<td><font color="#FF0000">Enter Time in 24 hour
+					format(Ex:14:32:56)</font>
 			</td>
 		</tr>
 		<tr></tr>
@@ -109,16 +111,12 @@
 		--%>
 		<tr></tr>
 		<tr>
-			<td><input type="submit" value="Active">
-			</td>
+			<td><input type="submit" value="Active"></td>
 			<td><input type="button" value="Deactive"
-				onclick="deActivateUnit();">
-			</td>
+				onclick="deActivateUnit();"></td>
 			<td><input type="button" value="Reset"
-				onclick="window.location.href=window.location.href">
-			</td>
-			<td><input type="button" value="Edit">
-			</td>
+				onclick="window.location.href=window.location.href"></td>
+			<td><input type="button" value="Edit"></td>
 		</tr>
 	</table>
 </form>
