@@ -20,13 +20,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
-@RequestMapping("/module/dms/addUnit.form")
-public class AddUnitController {
+@Controller("AddUnitController")
+@RequestMapping("/module/dms/activateUnit")
+public class ActivateUnitController {
 	private Log log = LogFactory.getLog(this.getClass());
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String main(Model model) {
+	public String showForm(Model model) {
 		DmsService dmsService = Context.getService(DmsService.class);
 		ConceptName owconid = dmsService.getOpdWardConceptId();
 		Concept conid = owconid.getConcept();
@@ -38,7 +38,7 @@ public class AddUnitController {
 			lcname.add(conname);
 		}
 		model.addAttribute("cnamel", lcname);
-		return "/module/dms/page/addUnit";
+		return "/module/dms/page/activateUnit";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -69,7 +69,7 @@ public class AddUnitController {
 			else{
 				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.failure");
 			}
-			return "redirect:/module/dms/addUnit.form";
+			return "redirect:/module/dms/main.form";
 		} else {
 			Integer unitno2 = Integer.parseInt(request.getParameter("unitno"));
 			String opdname2 = request.getParameter("selopd").toString();
@@ -90,7 +90,7 @@ public class AddUnitController {
 			//dmsopdunit.setUserId(11);
 			dmsService.saveUnit(dmsopdunit2);
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
-			return "/module/dms/page/dmsMain";
+			return "redirect:/module/dms/main.form";
 		}
 	}
 

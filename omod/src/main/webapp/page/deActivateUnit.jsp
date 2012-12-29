@@ -19,38 +19,7 @@
 --%>
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
-<script type="text/javascript">
-// get context path in order to build controller url
-	function getContextPath(){	
-		var pn = location.pathname;
-		var len = pn.indexOf("/", 1);				
-		var cp = pn.substring(0, len);
-		return cp;
-	}
-</script>
-<script type="text/javascript">	
-	// get all form data
-	function deActivateUnit(){
-		var unitno= jQuery("#unitno").val();
-		var selopd = jQuery("#selopd").val();
-		var selday = jQuery("#selday").val();
-		var starttime= jQuery("#starttime").val();
-		var endtime = jQuery("#endtime").val();
-			jQuery.ajax({
-			type : "GET",
-		    url : getContextPath() + "/module/dms/deActivateUnit.form",
-			data : ({
-				unitno			: unitno,
-				selopd			: selopd,
-				selday	        : selday,
-				starttime		: starttime,
-				endtime		    : endtime
-			})
-		});
-
-	}
-</script>
-<h2>Add Unit</h2>
+<h2>DeActivate Unit</h2>
 <form id="unitAddForm" method="POST">
 	<table>
 		<tr>
@@ -111,12 +80,9 @@
 		--%>
 		<tr></tr>
 		<tr>
-			<td><input type="submit" value="Active"></td>
-			<td><input type="button" value="Deactive"
-				onclick="deActivateUnit();"></td>
+			<td><input type="submit" value="Deactivate"></td>
 			<td><input type="button" value="Reset"
 				onclick="window.location.href=window.location.href"></td>
-			<td><input type="button" value="Edit"></td>
 		</tr>
 	</table>
 </form>
