@@ -20,7 +20,7 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <h2>Activate Unit</h2>
-<form id="unitAddForm" method="POST">
+<form id="unitActivateForm" method="POST">
 	<table>
 		<tr>
 			<td>Unit No</td>
