@@ -46,7 +46,17 @@ public interface DmsDAO {
 
 	public ConceptName getOpdConcepIdByName(String opdname) throws DAOException;
 	
+	public DmsOpdUnit getDmsOpd(Integer unitid) throws DAOException;
+	
 	public DmsOpdUnit getDmsOpd(Integer unitno,Concept opdconid,String day,String starttime,String endtime) throws DAOException;
+	
+	public List<DmsOpdUnit> getDmsOpdList() throws DAOException;
+	
+	public List<DmsOpdUnit> getDmsOpdActivatedList() throws DAOException;
+	
+	public List<DmsOpdUnit> getDmsOpdDeActivatedList() throws DAOException;
 
-	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws DAOException;
+	public DmsOpdUnit saveOrUpdateUnit(DmsOpdUnit dounit) throws DAOException;
+	
+	public void deleteDmsOpdUnit(DmsOpdUnit dounit) throws DAOException;
 }

@@ -97,6 +97,14 @@ public class HibernateDmsDAO implements DmsDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public DmsOpdUnit getDmsOpd(Integer unitid) throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				DmsOpdUnit.class);
+		criteria.add(Restrictions.eq("id", unitid));
+		return (DmsOpdUnit) criteria.uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
 		public DmsOpdUnit getDmsOpd(Integer unitno,Concept opdconid,String day,String starttime,String endtime) throws DAOException {
 			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 					DmsOpdUnit.class);
@@ -107,9 +115,36 @@ public class HibernateDmsDAO implements DmsDAO {
 			criteria.add(Restrictions.eq("endTime", endtime));
 			return (DmsOpdUnit) criteria.uniqueResult();
 		}
+	
+	@SuppressWarnings("unchecked")
+	public List<DmsOpdUnit> getDmsOpdList() throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				DmsOpdUnit.class);
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DmsOpdUnit> getDmsOpdActivatedList() throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				DmsOpdUnit.class);
+		criteria.add(Restrictions.isNotNull("unitActiveDate"));
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DmsOpdUnit> getDmsOpdDeActivatedList() throws DAOException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				DmsOpdUnit.class);
+		criteria.add(Restrictions.isNotNull("unitDeactiveDate"));
+		return criteria.list();
+	}
 
-	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws DAOException {
+	public DmsOpdUnit saveOrUpdateUnit(DmsOpdUnit dounit) throws DAOException {
 		sessionFactory.getCurrentSession().saveOrUpdate(dounit);
 		return dounit;
+	}
+	
+	public void deleteDmsOpdUnit(DmsOpdUnit dounit) throws DAOException {
+		sessionFactory.getCurrentSession().delete(dounit);
 	}
 }

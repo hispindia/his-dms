@@ -56,7 +56,17 @@ public interface DmsService extends OpenmrsService {
 
 	public ConceptName getOpdConcepIdByName(String opdname) throws APIException;
 	
+	public DmsOpdUnit getDmsOpd(Integer unitid) throws APIException;
+	
 	public DmsOpdUnit getDmsOpd(Integer unitno,Concept opdconid,String day,String starttime,String endtime) throws APIException;
+	
+	public List<DmsOpdUnit> getDmsOpdList() throws APIException;
+	
+	public List<DmsOpdUnit> getDmsOpdActivatedList() throws APIException;
+	
+	public List<DmsOpdUnit> getDmsOpdDeActivatedList() throws APIException;
 
-	public DmsOpdUnit saveUnit(DmsOpdUnit dounit) throws APIException;
+	public DmsOpdUnit saveOrUpdateUnit(DmsOpdUnit dounit) throws APIException;
+	
+	public void deleteDmsOpdUnit(DmsOpdUnit dounit) throws APIException;
 }

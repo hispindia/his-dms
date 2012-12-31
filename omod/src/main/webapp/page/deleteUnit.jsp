@@ -19,8 +19,8 @@
 --%>
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
-<h2>DeActivate Unit</h2>
-<form id="unitDeActivateForm" method="POST">
+<h2>Delete Unit</h2>
+<form id="unitDeleteForm" method="POST">
 <table id="myTable" class="tablesorter">
 	<thead>
 		<tr>
@@ -54,7 +54,7 @@
 			</c:forEach>
 	</tbody>
 	<tr>
-			<td><input type="submit" value="DeActivate"></td>
+			<td><input type="submit" value="Delete"></td>
 			<td><input type="button" value="Reset"
 				onclick="window.location.href=window.location.href"></td>
 		</tr>

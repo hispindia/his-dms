@@ -40,7 +40,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("AddUnitController")
+@Controller("ActivateUnitController")
 @RequestMapping("/module/dms/activateUnit")
 public class ActivateUnitController {
 	private Log log = LogFactory.getLog(this.getClass());
@@ -83,7 +83,7 @@ public class ActivateUnitController {
 			if(dmsopdunit.getUnitActiveDate()==null){
 			dmsopdunit.setUnitActiveDate(new Date());
 			dmsopdunit.setUnitDeactiveDate(null);
-			dmsService.saveUnit(dmsopdunit);
+			dmsService.saveOrUpdateUnit(dmsopdunit);
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
 			}
 			else{
@@ -108,7 +108,7 @@ public class ActivateUnitController {
 			dmsopdunit2.setEndTime(endtime2);
 			dmsopdunit2.setUnitActiveDate(new Date());
 			//dmsopdunit.setUserId(11);
-			dmsService.saveUnit(dmsopdunit2);
+			dmsService.saveOrUpdateUnit(dmsopdunit2);
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
 			return "redirect:/module/dms/main.form";
 		}

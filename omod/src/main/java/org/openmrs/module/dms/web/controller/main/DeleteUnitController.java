@@ -20,7 +20,6 @@
 
 package org.openmrs.module.dms.web.controller.main;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,17 +36,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("DeActivateUnitController")
-@RequestMapping("/module/dms/deActivateUnit.form")
-public class DeActivateUnitController {
+@Controller("DeleteUnitController")
+@RequestMapping("/module/dms/deleteUnit.form")
+public class DeleteUnitController {
 	private Log log = LogFactory.getLog(this.getClass());
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(Model model) {
 		DmsService dmsService = Context.getService(DmsService.class);
-		List<DmsOpdUnit> dmsopdunit = dmsService.getDmsOpdActivatedList();
+		List<DmsOpdUnit> dmsopdunit = dmsService.getDmsOpdList();
 		model.addAttribute("dmsopdunitl", dmsopdunit);
-		return "/module/dms/page/deActivateUnit";
+		return "/module/dms/page/deleteUnit";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -59,15 +58,13 @@ public class DeActivateUnitController {
 			for (int i = 0; i < select.length; i++) {
 				Integer unitid=Integer.parseInt(select[i]);
 				dmsopdunit = dmsService.getDmsOpd(unitid);
-				dmsopdunit.setUnitActiveDate(null);
-				dmsopdunit.setUnitDeactiveDate(new Date());
-				dmsService.saveOrUpdateUnit(dmsopdunit);
+				dmsService.deleteDmsOpdUnit(dmsopdunit);
 				}
 		}
 		
 		HttpSession httpSession = request.getSession();
 		
-		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.deactivate.success");
-		return "redirect:/module/dms/deActivateUnit.form";
+		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.delete.success");
+		return "redirect:/module/dms/deleteUnit.form";
 	}
 }

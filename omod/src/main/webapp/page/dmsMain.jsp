@@ -23,13 +23,11 @@
 	style="border-bottom: 1px solid black; padding-bottom: 5px; margin-bottom: 10px;">
 	<a href="activateUnit.form"><spring:message code="dms.activateunit" />
 	</a> &nbsp; | &nbsp; <a href="deActivateUnit.form"><spring:message
-			code="dms.deactivateunit" />
-	</a> &nbsp; | &nbsp; <a href="editUnit.form"><spring:message
-			code="dms.editunit" />
-	</a> &nbsp; | &nbsp; <a href="deleteUnit.form"><spring:message
-			code="dms.deleteunit" />
-	</a> &nbsp; | &nbsp; <a href="unitList.form"><spring:message
-			code="dms.unitlist" />
-	</a>
+			code="dms.deactivateunit" /> </a> &nbsp; | &nbsp; <a
+		href="deActivatedUnitList.form"><spring:message
+			code="dms.deactivatedunitlist" /> </a> &nbsp; | &nbsp; <a
+		href="editUnit.form"><spring:message code="dms.editunit" /> </a>
+	&nbsp; | &nbsp; <a href="deleteUnit.form"><spring:message
+			code="dms.deleteunit" /> </a>
 </div>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

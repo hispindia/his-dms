@@ -37,17 +37,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("DeActivateUnitController")
-@RequestMapping("/module/dms/deActivateUnit.form")
-public class DeActivateUnitController {
+@Controller("DeActivatedUnitListController")
+@RequestMapping("/module/dms/deActivatedUnitList.form")
+public class DeActivatedUnitListController {
 	private Log log = LogFactory.getLog(this.getClass());
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(Model model) {
 		DmsService dmsService = Context.getService(DmsService.class);
-		List<DmsOpdUnit> dmsopdunit = dmsService.getDmsOpdActivatedList();
+		List<DmsOpdUnit> dmsopdunit = dmsService.getDmsOpdDeActivatedList();
 		model.addAttribute("dmsopdunitl", dmsopdunit);
-		return "/module/dms/page/deActivateUnit";
+		return "/module/dms/page/deActivatedUnitList";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -59,15 +59,15 @@ public class DeActivateUnitController {
 			for (int i = 0; i < select.length; i++) {
 				Integer unitid=Integer.parseInt(select[i]);
 				dmsopdunit = dmsService.getDmsOpd(unitid);
-				dmsopdunit.setUnitActiveDate(null);
-				dmsopdunit.setUnitDeactiveDate(new Date());
+				dmsopdunit.setUnitActiveDate(new Date());
+				dmsopdunit.setUnitDeactiveDate(null);
 				dmsService.saveOrUpdateUnit(dmsopdunit);
 				}
 		}
 		
 		HttpSession httpSession = request.getSession();
 		
-		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.deactivate.success");
-		return "redirect:/module/dms/deActivateUnit.form";
+		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
+		return "redirect:/module/dms/deActivatedUnitList.form";
 	}
 }
