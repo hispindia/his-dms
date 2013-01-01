@@ -28,9 +28,9 @@
 		</tr>
 		<tr></tr>
 		<tr>
-			<td>Opd Name</td>
+			<td>OPD Name</td>
 			<td><select id="selopd" name="selopd"><option value=""><-------Select
-						Opd-------></option>
+						OPD-------></option>
 					<c:forEach items="${cnamel}" var="cnl">
 						<option value="${cnl.name}">${cnl.name}</option>
 					</c:forEach>
