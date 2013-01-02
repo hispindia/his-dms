@@ -1,20 +1,20 @@
 /**
  *  Copyright 2012 Society for Health Information Systems Programmes, India (HISP India)
  *
- *  This file is part of Dms module.
+ *  This file is part of DMS module.
  *
- *  Dms module is free software: you can redistribute it and/or modify
+ *  DMS module is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
 
- *  Dms module is distributed in the hope that it will be useful,
+ *  DMS module is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Dms module.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with DMS module.  If not, see <http://www.gnu.org/licenses/>.
  *
  **/
 
@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("ActivateUnitController")
-@RequestMapping("/module/dms/activateUnit")
+@RequestMapping("/module/dms/activateUnit.form")
 public class ActivateUnitController {
 	private Log log = LogFactory.getLog(this.getClass());
 

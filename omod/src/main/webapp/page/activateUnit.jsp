@@ -19,6 +19,10 @@
 --%>
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
+<%@ include file="../includes/js_css.jsp"%>
+<br/>
+<openmrs:require privilege="Manage DMS Activate Unit" otherwise="/login.htm" redirect="/module/dms/activateUnit.form" />
+<%@ include file="../page/localHeader.jsp" %>
 <h2>Activate Unit</h2>
 <form id="unitActivateForm" method="POST">
 	<table>

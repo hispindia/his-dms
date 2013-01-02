@@ -19,15 +19,7 @@
 --%>
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
-<div
-	style="border-bottom: 1px solid black; padding-bottom: 5px; margin-bottom: 10px;">
-	<a href="activateUnit.form"><spring:message code="dms.activateunit" />
-	</a> &nbsp; | &nbsp; <a href="deActivateUnit.form"><spring:message
-			code="dms.deactivateunit" /> </a> &nbsp; | &nbsp; <a
-		href="deActivatedUnitList.form"><spring:message
-			code="dms.deactivatedunitlist" /> </a> &nbsp; | &nbsp; <a
-		href="editUnit.form"><spring:message code="dms.editunit" /> </a>
-	&nbsp; | &nbsp; <a href="deleteUnit.form"><spring:message
-			code="dms.deleteunit" /> </a>
-</div>
+<br/>
+<openmrs:require privilege="Access DMS" otherwise="/login.htm" redirect="/module/dms/main.form" />
+<%@ include file="../page/localHeader.jsp" %>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

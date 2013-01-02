@@ -20,6 +20,9 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="../includes/js_css.jsp"%>
+<br/>
+<openmrs:require privilege="Manage DMS DeActivated Unit List" otherwise="/login.htm" redirect="/module/dms/deActivatedUnitList.form" />
+<%@ include file="../page/localHeader.jsp" %>
 <h2>DeActivated Unit List</h2>
 <form id="unitDeActivatedListForm" method="POST">
 	<table id="myTable" class="tablesorter" class="thickbox">

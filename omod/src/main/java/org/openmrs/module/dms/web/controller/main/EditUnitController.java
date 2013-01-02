@@ -20,51 +20,28 @@
 
 package org.openmrs.module.dms.web.controller.main;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.Context;
-import org.openmrs.module.dms.DmsService;
-import org.openmrs.module.dms.model.DmsOpdUnit;
-import org.openmrs.web.WebConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("DeleteUnitController")
-@RequestMapping("/module/dms/deleteUnit.form")
-public class DeleteUnitController {
+@Controller("EditUnitController")
+@RequestMapping("/module/dms/editUnit.form")
+public class EditUnitController {
 	private Log log = LogFactory.getLog(this.getClass());
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(Model model) {
-		DmsService dmsService = Context.getService(DmsService.class);
-		List<DmsOpdUnit> dmsopdunit = dmsService.getDmsOpdList();
-		model.addAttribute("dmsopdunitl", dmsopdunit);
-		return "/module/dms/page/deleteUnit";
+		
+		return "/module/dms/page/editUnit";
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(Model model, HttpServletRequest request) {
-		DmsService dmsService = Context.getService(DmsService.class);
-		DmsOpdUnit dmsopdunit = new DmsOpdUnit();
-		String select[] = request.getParameterValues("showResultsn"); 
-		if (select != null && select.length != 0) {
-			for (int i = 0; i < select.length; i++) {
-				Integer unitid=Integer.parseInt(select[i]);
-				dmsopdunit = dmsService.getDmsOpd(unitid);
-				dmsService.deleteDmsOpdUnit(dmsopdunit);
-				}
-		}
-		
-		HttpSession httpSession = request.getSession();
-		
-		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.delete.success");
-		return "redirect:/module/dms/deleteUnit.form";
+		return null;
 	}
 }

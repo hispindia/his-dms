@@ -20,6 +20,9 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="../includes/js_css.jsp"%>
+<br/>
+<openmrs:require privilege="Delete DMS Unit" otherwise="/login.htm" redirect="/module/dms/deleteUnit.form" />
+<%@ include file="../page/localHeader.jsp" %>
 <h2>Delete Unit</h2>
 <form id="unitDeleteForm" method="POST">
 	<table id="myTable" class="tablesorter" class="thickbox">

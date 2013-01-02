@@ -32,8 +32,28 @@
 	</extension>
 	
 	<privilege>
-		<name>View Dms details</name>
-		<description>Allows user to view Dms details</description>
+		<name>Access DMS</name>
+		<description>Allows user to access DMS</description>
+	</privilege>
+	<privilege>
+		<name>Manage DMS Activate Unit</name>
+		<description>Allows user to Activate Unit</description>
+	</privilege>
+	<privilege>
+		<name>Manage DMS DeActivate Unit</name>
+		<description>Allows user to DeActivate Unit</description>
+	</privilege>
+	<privilege>
+		<name>Manage DMS DeActivated Unit List</name>
+		<description>Allows user to view DeActivated Unit List</description>
+	</privilege>
+	<privilege>
+		<name>Edit DMS Unit</name>
+		<description>Allows user to Edit DMS Unit</description>
+	</privilege>
+	<privilege>
+		<name>Delete DMS Unit</name>
+		<description>Allows user to Delete DMS Unit</description>
 	</privilege>
 
 	<!-- Internationalization -->

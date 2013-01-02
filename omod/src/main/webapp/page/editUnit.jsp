@@ -1,4 +1,4 @@
-/**
+<%--
  *  Copyright 2012 Society for Health Information Systems Programmes, India (HISP India)
  *
  *  This file is part of DMS module.
@@ -16,30 +16,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with DMS module.  If not, see <http://www.gnu.org/licenses/>.
  *
- **/
-
-package org.openmrs.module.dms.web.controller.main;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-/**
- *
- */
-@Controller("DmsMainController")
-@RequestMapping("/module/dms/main.form")
-public class DmsMainController {
-
-	private Log log = LogFactory.getLog(this.getClass());
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String main(Model model) {
-
-		return "/module/dms/page/dmsMain";
-	}
-
-}
+--%>
+<%@ include file="/WEB-INF/template/include.jsp"%>
+<%@ include file="/WEB-INF/template/header.jsp"%>
+<%@ include file="../includes/js_css.jsp"%>
+<br/>
+<openmrs:require privilege="Edit DMS Unit" otherwise="/login.htm" redirect="/module/dms/editUnit.form" />
+<%@ include file="../page/localHeader.jsp" %>
+<h2>Edit Unit</h2>
+<%@ include file="/WEB-INF/template/footer.jsp"%>

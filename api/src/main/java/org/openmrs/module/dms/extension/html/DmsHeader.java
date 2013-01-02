@@ -30,7 +30,7 @@ public class DmsHeader extends Extension {
 	
 	
 	public String getRequiredPrivilege() {
-		return "View Dms details";
+		return "Access DMS";
 	}
 	
 
