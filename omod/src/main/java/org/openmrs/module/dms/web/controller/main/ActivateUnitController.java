@@ -23,6 +23,7 @@ package org.openmrs.module.dms.web.controller.main;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -33,7 +34,8 @@ import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dms.DmsService;
-import org.openmrs.module.dms.model.DmsOpdUnit;
+import org.openmrs.module.hospitalcore.DmsCommonService;
+import org.openmrs.module.hospitalcore.model.DmsOpdUnit;
 import org.openmrs.web.WebConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +49,7 @@ public class ActivateUnitController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(Model model) {
+		DmsCommonService dmsCommonService=Context.getService(DmsCommonService.class);
 		DmsService dmsService = Context.getService(DmsService.class);
 		ConceptName owconid = dmsService.getOpdWardConceptId();
 		Concept conid = owconid.getConcept();
@@ -54,7 +57,7 @@ public class ActivateUnitController {
 		List<ConceptName> lcname = new ArrayList<ConceptName>();
 		for (ConceptAnswer conans : lconans) {
 			Concept con = conans.getAnswerConcept();
-			ConceptName conname = dmsService.getOpdWardNameByConceptId(con);
+			ConceptName conname = dmsCommonService.getOpdWardNameByConceptId(con);
 			lcname.add(conname);
 		}
 		model.addAttribute("cnamel", lcname);

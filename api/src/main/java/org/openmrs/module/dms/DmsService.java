@@ -27,7 +27,7 @@ import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptName;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.dms.model.DmsOpdUnit;
+import org.openmrs.module.hospitalcore.model.DmsOpdUnit;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -50,9 +50,6 @@ public interface DmsService extends OpenmrsService {
 	public ConceptName getOpdWardConceptId() throws APIException;
 
 	public List<ConceptAnswer> getAllOpdList(Concept conid) throws APIException;
-
-	public ConceptName getOpdWardNameByConceptId(Concept con)
-			throws APIException;
 
 	public ConceptName getOpdConcepIdByName(String opdname) throws APIException;
 	

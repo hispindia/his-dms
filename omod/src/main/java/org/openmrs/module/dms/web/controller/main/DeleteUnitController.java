@@ -29,7 +29,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dms.DmsService;
-import org.openmrs.module.dms.model.DmsOpdUnit;
+import org.openmrs.module.hospitalcore.model.DmsOpdUnit;
 import org.openmrs.web.WebConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

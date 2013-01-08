@@ -21,6 +21,7 @@
 package org.openmrs.module.dms.impl;
 
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
@@ -30,7 +31,7 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.dms.DmsService;
 import org.openmrs.module.dms.db.DmsDAO;
-import org.openmrs.module.dms.model.DmsOpdUnit;
+import org.openmrs.module.hospitalcore.model.DmsOpdUnit;
 
 /**
  * It is a default implementation of {@link DmsService}.
@@ -62,11 +63,6 @@ public class DmsServiceImpl extends BaseOpenmrsService implements DmsService {
 
 	public List<ConceptAnswer> getAllOpdList(Concept conid) throws APIException {
 		return dao.getAllOpdList(conid);
-	}
-
-	public ConceptName getOpdWardNameByConceptId(Concept con)
-			throws APIException {
-		return dao.getOpdWardNameByConceptId(con);
 	}
 
 	public ConceptName getOpdConcepIdByName(String opdname) throws APIException {
