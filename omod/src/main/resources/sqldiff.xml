@@ -30,7 +30,7 @@
 			end_time VARCHAR(10),
 			active_date DATETIME,
 			deactive_date DATETIME,
-			user_id INTEGER,
+			creator INTEGER,
 			PRIMARY KEY (unit_id));
 </sql>
 	</diff>

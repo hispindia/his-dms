@@ -122,7 +122,7 @@ public class ActivateUnitController {
 			dmsopdunit2.setStartTime(starttime2);
 			dmsopdunit2.setEndTime(endtime2);
 			dmsopdunit2.setUnitActiveDate(new Date());
-			//dmsopdunit.setUserId(11);
+			dmsopdunit2.setCreator(Context.getAuthenticatedUser().getUserId());
 			dmsService.saveOrUpdateUnit(dmsopdunit2);
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
 			return "redirect:/module/dms/main.form";
