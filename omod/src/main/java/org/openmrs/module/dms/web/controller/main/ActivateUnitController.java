@@ -73,7 +73,13 @@ public class ActivateUnitController {
 		String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
+		if(starttime.equals("00:00:00")){
+			starttime="0:00:00";
+		}
 		String endtime = request.getParameter("endtime");
+		if(endtime.equals("00:00:00")){
+			endtime="0:00:00";
+		}
 		
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
 		
@@ -98,7 +104,13 @@ public class ActivateUnitController {
 			String opdname2 = request.getParameter("selopd").toString();
 			String day2 = request.getParameter("selday");
 			String starttime2 = request.getParameter("starttime");
+			if(starttime2.equals("00:00:00")){
+				starttime2="0:00:00";
+			}
 			String endtime2 = request.getParameter("endtime");
+			if(endtime2.equals("00:00:00")){
+				endtime2="0:00:00";
+			}
 			
 			ConceptName opdconid2 = dmsService.getOpdConcepIdByName(opdname2);
 			

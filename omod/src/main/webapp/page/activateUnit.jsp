@@ -20,11 +20,98 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="../includes/js_css.jsp"%>
+<script type="text/javascript">
+function validate(){
+if (StringUtils.isBlank(jQuery("#unitno").val())) {
+				alert("Please enter unit no");
+				return false;
+			}
+else{
+if (!StringUtils.isDigit(jQuery("#unitno").val())) {
+					alert("Please enter unit no in correct format(Ex:1)");
+					return false;
+				}
+}			
+if (StringUtils.isBlank(jQuery("#selopd").val())) {
+				alert("Please select opd");
+				return false;
+			}
+if (StringUtils.isBlank(jQuery("#selday").val())) {
+				alert("Please select day");
+				return false;
+			}
+if (StringUtils.isBlank(jQuery("#starttime").val())) {
+				alert("Please enter start time");
+				return false;
+			}	
+else{
+value = jQuery("#starttime").val();
+//var regex = /^(\d{1,2}):(\d{2}):(\d{2})?$/;
+var regex = /^(\d{2}):(\d{2}):(\d{2})?$/;
+var timArr = value.match(regex);
+ 
+ if (timArr == null) {
+ alert("Start Time is not in valid format.");
+ return false;
+ }
+hour = timArr[1];
+minute = timArr[2];
+second = timArr[3];
+
+if (hour < 0  || hour > 23) {
+alert("Hour of Start Time must be between 0 and 23");
+return false;
+}
+if (minute<0 || minute > 59) {
+alert ("Minute of Start Time must be between 0 and 59");
+return false;
+}
+if (second<0 || second > 59) {
+alert ("Second of Start Time must be between 0 and 59");
+return false;
+}
+
+}				
+if (StringUtils.isBlank(jQuery("#endtime").val())) {
+				alert("Please enter end time");
+				return false;
+			}
+else{
+value = jQuery("#endtime").val();
+//var regex = /^(\d{1,2}):(\d{2}):(\d{2})?$/;
+var regex = /^(\d{2}):(\d{2}):(\d{2})?$/;
+var timArr = value.match(regex);
+ 
+ if (timArr == null) {
+ alert("End Time is not in valid format.");
+ return false;
+ }
+hour = timArr[1];
+minute = timArr[2];
+second = timArr[3];
+
+if (hour < 0  || hour > 23) {
+alert("Hour of End Time must be between 0 and 23");
+return false;
+}
+if (minute<0 || minute > 59) {
+alert ("Minute of End Time must be between 0 and 59");
+return false;
+}
+if (second<0 || second > 59) {
+alert ("Second of End Time must be between 0 and 59");
+return false;
+}
+
+}																	
+return true;
+}
+</script>
 <br/>
 <openmrs:require privilege="Manage DMS Activate Unit" otherwise="/login.htm" redirect="/module/dms/activateUnit.form" />
 <%@ include file="../page/localHeader.jsp" %>
 <h2>Activate Unit</h2>
-<form id="unitActivateForm" method="POST">
+<form id="unitActivateForm" method="POST" onsubmit="javascript:return validate();">
 	<table>
 		<tr>
 			<td>Unit No</td>
@@ -33,8 +120,8 @@
 		<tr></tr>
 		<tr>
 			<td>OPD Name</td>
-			<td><select id="selopd" name="selopd"><option value=""><-------Select
-						OPD-------></option>
+			<td><select id="selopd" name="selopd"><option value=""><---------------Select
+						OPD---------------></option>
 					<c:forEach items="${cnamel}" var="cnl">
 						<option value="${cnl.name}">${cnl.name}</option>
 					</c:forEach>
@@ -63,7 +150,7 @@
 			<td></td>
 			<td>Start Time</td>
 			<td><input type="text" id="starttime" name="starttime"
-				value="0:00:00"></td>
+				value="00:00:00"></td>
 			<td></td>
 			<td></td>
 			<td></td>
@@ -72,7 +159,7 @@
 			<td><input type="text" id="endtime" name="endtime"
 				value="23:59:59"></td>
 			<td><font color="#FF0000">Enter Time in 24 hour
-					format(Ex:14:32:56)</font>
+					format(Ex:09:32:56)</font>
 			</td>
 		</tr>
 		<tr></tr>
