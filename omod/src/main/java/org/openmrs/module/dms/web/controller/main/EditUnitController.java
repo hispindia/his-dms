@@ -76,8 +76,8 @@ public class EditUnitController {
 		
 		dmsopdunit = dmsService.getDmsOpd(unitId);
 		
-		Integer unitno = Integer.parseInt(request.getParameter("unitno"));
-		String opdname = request.getParameter("selopd").toString();
+		//Integer unitno = Integer.parseInt(request.getParameter("unitno"));
+		//String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
 		if (starttime.equals("00:00:00")) {
@@ -90,10 +90,10 @@ public class EditUnitController {
 		
 		HttpSession httpSession = request.getSession();
 		
-		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
+		//ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
 		
-		dmsopdunit.setUnitNo(unitno);
-		dmsopdunit.setOpdConceptId(opdconid.getConcept());
+		//dmsopdunit.setUnitNo(unitno);
+		//dmsopdunit.setOpdConceptId(opdconid.getConcept());
 		dmsopdunit.setOpdWorkingDay(day);
 		dmsopdunit.setStartTime(starttime);
 		dmsopdunit.setEndTime(endtime);
