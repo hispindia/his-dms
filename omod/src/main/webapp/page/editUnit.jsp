@@ -107,6 +107,25 @@ return false;
 return true;
 }
 </script>
+<script type="text/javascript">
+MODEL = {
+		selectedOPD: "${dmsOpdUnit.opdConceptId.name}",
+		selectedDay: "${dmsOpdUnit.opdWorkingDay}"
+	};
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+// Set the selected OPD
+		if(!StringUtils.isBlank(MODEL.selectedOPD)){			
+			jQuery("#selopd").val(MODEL.selectedOPD);
+			jQuery("#selopd").attr("disabled", "disabled");
+		}
+// Set the selected Day
+		if(!StringUtils.isBlank(MODEL.selectedDay)){			
+			jQuery("#selday").val(MODEL.selectedDay);
+		}
+});
+</script>
 <br />
 <%@ include file="../page/localHeader.jsp"%>
 <h2>Edit Unit</h2>
@@ -116,7 +135,7 @@ return true;
 		<tr>
 			<td>Unit No</td>
 			<td><input type="text" id="unitno" name="unitno"
-				value="${dmsOpdUnit.unitNo}">
+				value="${dmsOpdUnit.unitNo}" readOnly="true">
 			</td>
 		</tr>
 		<tr></tr>
