@@ -1,4 +1,4 @@
- <%--
+<%--
  *  Copyright 2012 Society for Health Information Systems Programmes, India (HISP India)
  *
  *  This file is part of DMS module.
@@ -16,38 +16,32 @@
  *  You should have received a copy of the GNU General Public License
  *  along with DMS module.  If not, see <http://www.gnu.org/licenses/>.
  *
---%> 
-<div style="border-bottom: 1px solid black; padding-bottom:5px; margin-bottom:10px;">
-    <ul id="menu">
-        <li class="first">
-            <span style="font-weight:bold; font-size:large;">Department Management System</span>
-        </li>
-        <openmrs:hasPrivilege privilege="Manage DMS Activate Unit">
-            <li id="ActivateId">
-				<a href="activateUnit.form">Activate Unit </a>
-            </li>
-        </openmrs:hasPrivilege>        
+--%>
+<div
+	style="border-bottom: 1px solid black; padding-bottom: 5px; margin-bottom: 10px;">
+	<ul id="menu">
+		<li class="first"><span
+			style="font-weight: bold; font-size: large;">Department
+				Management System</span></li>
+		<openmrs:hasPrivilege privilege="Manage DMS Activate Unit">
+			<li id="ActivateId"><a href="activateUnit.form">Activate
+					Unit </a></li>
+		</openmrs:hasPrivilege>
 		<openmrs:hasPrivilege privilege="Manage DMS DeActivate Unit">
-            <li id="DeActivateId">
-				<a href="deActivateUnit.form">DeActivate Unit</a>
-            </li>
-        </openmrs:hasPrivilege>
-        <openmrs:hasPrivilege privilege="Manage DMS DeActivated Unit List">
-            <li id="DeActivatedListId">
-				<a href="deActivatedUnitList.form">DeActivated Unit List</a>
-            </li>
-        </openmrs:hasPrivilege>
+			<li id="DeActivateId"><a href="deActivateUnit.form">DeActivate
+					Unit</a></li>
+		</openmrs:hasPrivilege>
+		<openmrs:hasPrivilege privilege="Manage DMS DeActivated Unit List">
+			<li id="DeActivatedListId"><a href="deActivatedUnitList.form">DeActivated
+					Unit List</a></li>
+		</openmrs:hasPrivilege>
 		<openmrs:hasPrivilege privilege="Edit DMS Unit">
-            <li id="EditId">
-				<a href="editUnit.form">Edit Unit </a>
-            </li>
-        </openmrs:hasPrivilege>
+			<li id="EditId"><a href="viewEditUnitList.form">Edit Unit </a></li>
+		</openmrs:hasPrivilege>
 		<openmrs:hasPrivilege privilege="Delete DMS Unit">
-            <li id="DeleteId">
-				<a href="deleteUnit.form">Delete Unit </a>
-            </li>
-        </openmrs:hasPrivilege>
-    </ul>
+			<li id="DeleteId"><a href="deleteUnit.form">Delete Unit </a></li>
+		</openmrs:hasPrivilege>
+	</ul>
 </div>
 
 <script type="text/javascript">
@@ -70,7 +64,7 @@
 		activate("DeActivateId");
 	} else if(contain(url, "deActivatedUnitList.form")){
 		activate("DeActivatedListId");
-	} else if(contain(url, "editUnit.form")){
+	} else if(contain(url, "viewEditUnitList.form")){
 		activate("EditId");
 	} else if(contain(url, "deleteUnit.form")){
 		activate("DeleteId");
