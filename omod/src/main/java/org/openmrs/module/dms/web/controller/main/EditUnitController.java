@@ -22,10 +22,8 @@ package org.openmrs.module.dms.web.controller.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
@@ -64,6 +62,27 @@ public class EditUnitController {
 		}
 		model.addAttribute("cnamel", lcname);
 		dmsOpdUnit = dmsService.getDmsOpd(unitId);
+		String starttime = dmsOpdUnit.getStartTime();
+		String endtime = dmsOpdUnit.getEndTime();
+		String starttimep1 = starttime.substring(0, 2);
+		String starttimep2 = starttime.substring(2, 4);
+		String endtimep1 = endtime.substring(0, 2);
+		String endtimep2 = endtime.substring(2, 4);
+		if (starttimep1.equals("0:")) {
+			starttime = "0" + starttimep1 + starttimep2;
+			dmsOpdUnit.setStartTime(starttime);
+		} else {
+			starttime = starttime.substring(0, 5);
+			dmsOpdUnit.setStartTime(starttime);
+		}
+		if (endtimep1.equals("0:")) {
+			endtime = "0" + endtimep1 + endtimep2;
+			dmsOpdUnit.setEndTime(endtime);
+		} else {
+			endtime = endtime.substring(0, 5);
+			dmsOpdUnit.setEndTime(endtime);
+		}
+		
 		model.addAttribute("dmsOpdUnit", dmsOpdUnit);
 		return "/module/dms/page/editUnit";
 	}
@@ -80,12 +99,20 @@ public class EditUnitController {
 		//String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
-		if (starttime.equals("00:00:00")) {
-			starttime = "0:00:00";
-		}
 		String endtime = request.getParameter("endtime");
-		if (endtime.equals("00:00:00")) {
-			endtime = "0:00:00";
+		String starttimep1 = starttime.substring(0, 2);
+		String starttimep2 = starttime.substring(3, 5);
+		String endtimep1 = endtime.substring(0, 2);
+		String endtimep2 = endtime.substring(3, 5);
+		if (starttimep1.equals("00")) {
+			starttime = "0:" + starttimep2 + ":00";
+		} else {
+			starttime = starttime + ":00";
+		}
+		if (endtimep1.equals("00")) {
+			endtime = "0:" + endtimep2 + ":00";
+		} else {
+			endtime = endtime + ":00";
 		}
 		
 		HttpSession httpSession = request.getSession();

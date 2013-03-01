@@ -45,29 +45,24 @@ if (StringUtils.isBlank(jQuery("#starttime").val())) {
 				return false;
 			}	
 else{
-value = jQuery("#starttime").val();
-//var regex = /^(\d{1,2}):(\d{2}):(\d{2})?$/;
-var regex = /^(\d{2}):(\d{2}):(\d{2})?$/;
-var timArr = value.match(regex);
+value1 = jQuery("#starttime").val();
+//var regex = /^(\d{1,2}):(\d{2})?$/;
+var regex = /^(\d{2}):(\d{2})?$/;
+var timArr1 = value1.match(regex);
  
- if (timArr == null) {
- alert("Start Time is not in valid format.");
+ if (timArr1 == null) {
+ alert("Start Time is not in valid format.Please Enter in HH:mm format");
  return false;
  }
-hour = timArr[1];
-minute = timArr[2];
-second = timArr[3];
+hour1 = timArr1[1];
+minute1 = timArr1[2];
 
-if (hour < 0  || hour > 23) {
+if (hour1 < 0  || hour1 > 23) {
 alert("Hour of Start Time must be between 0 and 23");
 return false;
 }
-if (minute<0 || minute > 59) {
+if (minute1<0 || minute1 > 59) {
 alert ("Minute of Start Time must be between 0 and 59");
-return false;
-}
-if (second<0 || second > 59) {
-alert ("Second of Start Time must be between 0 and 59");
 return false;
 }
 
@@ -77,29 +72,32 @@ if (StringUtils.isBlank(jQuery("#endtime").val())) {
 				return false;
 			}
 else{
-value = jQuery("#endtime").val();
-//var regex = /^(\d{1,2}):(\d{2}):(\d{2})?$/;
-var regex = /^(\d{2}):(\d{2}):(\d{2})?$/;
-var timArr = value.match(regex);
+value1 = jQuery("#starttime").val();
+value2 = jQuery("#endtime").val();
+//var regex = /^(\d{1,2}):(\d{2})?$/;
+var regex = /^(\d{2}):(\d{2})?$/;
+var timArr1 = value1.match(regex);
+var timArr2 = value2.match(regex);
  
- if (timArr == null) {
- alert("End Time is not in valid format.");
+ if (timArr2 == null) {
+ alert("End Time is not in valid format.Please Enter in HH:mm format");
  return false;
  }
-hour = timArr[1];
-minute = timArr[2];
-second = timArr[3];
+hour1 = timArr1[1];
+minute1 = timArr1[2];
+hour2 = timArr2[1];
+minute2 = timArr2[2];
 
-if (hour < 0  || hour > 23) {
+if (hour2 < 0  || hour2 > 23) {
 alert("Hour of End Time must be between 0 and 23");
 return false;
 }
-if (minute<0 || minute > 59) {
+if (minute2<0 || minute2 > 59) {
 alert ("Minute of End Time must be between 0 and 59");
 return false;
 }
-if (second<0 || second > 59) {
-alert ("Second of End Time must be between 0 and 59");
+if (hour2 <= hour1) {
+alert("Hour of End Time must be greater than Hour of Start Time");
 return false;
 }
 
@@ -134,7 +132,7 @@ jQuery(document).ready(function(){
 	<table>
 		<tr>
 			<td>Unit No</td>
-			<td><input type="text" id="unitno" name="unitno"
+			<td><input type="text" id="unitno" name="unitno" size="5"
 				value="${dmsOpdUnit.unitNo}" readOnly="true">
 			</td>
 		</tr>
@@ -170,7 +168,7 @@ jQuery(document).ready(function(){
 			<td></td>
 			<td></td>
 			<td>Start Time</td>
-			<td><input type="text" id="starttime" name="starttime"
+			<td><input type="text" id="starttime" name="starttime" size="5"
 				value="${dmsOpdUnit.startTime}">
 			</td>
 			<td></td>
@@ -178,11 +176,11 @@ jQuery(document).ready(function(){
 			<td></td>
 			<td></td>
 			<td>End Time</td>
-			<td><input type="text" id="endtime" name="endtime"
+			<td><input type="text" id="endtime" name="endtime" size="5"
 				value="${dmsOpdUnit.endTime}">
 			</td>
 			<td><font color="#FF0000">Enter Time in 24 hour
-					format(Ex:09:32:56)</font></td>
+					format(Ex:HH:mm)</font></td>
 		</tr>
 		<tr></tr>
 		<%--

@@ -45,11 +45,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller("ActivateUnitController")
 @RequestMapping("/module/dms/activateUnit.form")
 public class ActivateUnitController {
+	
 	private Log log = LogFactory.getLog(this.getClass());
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(Model model) {
-		DmsCommonService dmsCommonService=Context.getService(DmsCommonService.class);
+		DmsCommonService dmsCommonService = Context.getService(DmsCommonService.class);
 		DmsService dmsService = Context.getService(DmsService.class);
 		ConceptName owconid = dmsService.getOpdWardConceptId();
 		Concept conid = owconid.getConcept();
@@ -63,7 +64,7 @@ public class ActivateUnitController {
 		model.addAttribute("cnamel", lcname);
 		return "/module/dms/page/activateUnit";
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(Model model, HttpServletRequest request) {
 		DmsService dmsService = Context.getService(DmsService.class);
@@ -73,30 +74,36 @@ public class ActivateUnitController {
 		String opdname = request.getParameter("selopd").toString();
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
-		if(starttime.equals("00:00:00")){
-			starttime="0:00:00";
-		}
 		String endtime = request.getParameter("endtime");
-		if(endtime.equals("00:00:00")){
-			endtime="0:00:00";
+		String starttimep1 = starttime.substring(0, 2);
+		String starttimep2 = starttime.substring(3, 5);
+		String endtimep1 = endtime.substring(0, 2);
+		String endtimep2 = endtime.substring(3, 5);
+		if (starttimep1.equals("00")) {
+			starttime = "0:" + starttimep2 + ":00";
+		} else {
+			starttime = starttime + ":00";
+		}
+		if (endtimep1.equals("00")) {
+			endtime = "0:" + endtimep2 + ":00";
+		} else {
+			endtime = endtime + ":00";
 		}
 		
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
 		
-		dmsopdunit = dmsService.getDmsOpd(unitno, opdconid.getConcept(),
-				day, starttime, endtime);
+		dmsopdunit = dmsService.getDmsOpd(unitno, opdconid.getConcept(), day, starttime, endtime);
 		
 		HttpSession httpSession = request.getSession();
 		
-		if (dmsopdunit!= null) {
-			if(dmsopdunit.getUnitActiveDate()==null){
-			dmsopdunit.setUnitActiveDate(new Date());
-			dmsopdunit.setUnitDeactiveDate(null);
-			dmsService.saveOrUpdateUnit(dmsopdunit);
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
-			}
-			else{
-				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.failure");
+		if (dmsopdunit != null) {
+			if (dmsopdunit.getUnitActiveDate() == null) {
+				dmsopdunit.setUnitActiveDate(new Date());
+				dmsopdunit.setUnitDeactiveDate(null);
+				dmsService.saveOrUpdateUnit(dmsopdunit);
+				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dms.activate.success");
+			} else {
+				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dms.activate.failure");
 			}
 			return "redirect:/module/dms/main.form";
 		} else {
@@ -104,12 +111,20 @@ public class ActivateUnitController {
 			String opdname2 = request.getParameter("selopd").toString();
 			String day2 = request.getParameter("selday");
 			String starttime2 = request.getParameter("starttime");
-			if(starttime2.equals("00:00:00")){
-				starttime2="0:00:00";
-			}
 			String endtime2 = request.getParameter("endtime");
-			if(endtime2.equals("00:00:00")){
-				endtime2="0:00:00";
+			String starttime2p1 = starttime2.substring(0, 2);
+			String starttime2p2 = starttime2.substring(3, 5);
+			String endtime2p1 = endtime2.substring(0, 2);
+			String endtime2p2 = endtime2.substring(3, 5);
+			if (starttime2p1.equals("00")) {
+				starttime2 = "0:" + starttime2p2 + ":00";
+			} else {
+				starttime2 = starttime2 + ":00";
+			}
+			if (endtime2p1.equals("00")) {
+				endtime2 = "0:" + endtime2p2 + ":00";
+			} else {
+				endtime2 = endtime2 + ":00";
 			}
 			
 			ConceptName opdconid2 = dmsService.getOpdConcepIdByName(opdname2);
@@ -124,9 +139,9 @@ public class ActivateUnitController {
 			dmsopdunit2.setUnitActiveDate(new Date());
 			dmsopdunit2.setCreator(Context.getAuthenticatedUser().getUserId());
 			dmsService.saveOrUpdateUnit(dmsopdunit2);
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR,"dms.activate.success");
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dms.activate.success");
 			return "redirect:/module/dms/main.form";
 		}
 	}
-
+	
 }

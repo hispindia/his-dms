@@ -45,29 +45,24 @@ if (StringUtils.isBlank(jQuery("#starttime").val())) {
 				return false;
 			}	
 else{
-value = jQuery("#starttime").val();
-//var regex = /^(\d{1,2}):(\d{2}):(\d{2})?$/;
-var regex = /^(\d{2}):(\d{2}):(\d{2})?$/;
-var timArr = value.match(regex);
+value1 = jQuery("#starttime").val();
+//var regex = /^(\d{1,2}):(\d{2})?$/;
+var regex = /^(\d{2}):(\d{2})?$/;
+var timArr1 = value1.match(regex);
  
- if (timArr == null) {
- alert("Start Time is not in valid format.");
+ if (timArr1 == null) {
+ alert("Start Time is not in valid format.Please Enter in HH:mm format");
  return false;
  }
-hour = timArr[1];
-minute = timArr[2];
-second = timArr[3];
+hour1 = timArr1[1];
+minute1 = timArr1[2];
 
-if (hour < 0  || hour > 23) {
+if (hour1 < 0  || hour1 > 23) {
 alert("Hour of Start Time must be between 0 and 23");
 return false;
 }
-if (minute<0 || minute > 59) {
+if (minute1<0 || minute1 > 59) {
 alert ("Minute of Start Time must be between 0 and 59");
-return false;
-}
-if (second<0 || second > 59) {
-alert ("Second of Start Time must be between 0 and 59");
 return false;
 }
 
@@ -77,29 +72,32 @@ if (StringUtils.isBlank(jQuery("#endtime").val())) {
 				return false;
 			}
 else{
-value = jQuery("#endtime").val();
-//var regex = /^(\d{1,2}):(\d{2}):(\d{2})?$/;
-var regex = /^(\d{2}):(\d{2}):(\d{2})?$/;
-var timArr = value.match(regex);
+value1 = jQuery("#starttime").val();
+value2 = jQuery("#endtime").val();
+//var regex = /^(\d{1,2}):(\d{2})?$/;
+var regex = /^(\d{2}):(\d{2})?$/;
+var timArr1 = value1.match(regex);
+var timArr2 = value2.match(regex);
  
- if (timArr == null) {
- alert("End Time is not in valid format.");
+ if (timArr2 == null) {
+ alert("End Time is not in valid format.Please Enter in HH:mm format");
  return false;
  }
-hour = timArr[1];
-minute = timArr[2];
-second = timArr[3];
+hour1 = timArr1[1];
+minute1 = timArr1[2];
+hour2 = timArr2[1];
+minute2 = timArr2[2];
 
-if (hour < 0  || hour > 23) {
+if (hour2 < 0  || hour2 > 23) {
 alert("Hour of End Time must be between 0 and 23");
 return false;
 }
-if (minute<0 || minute > 59) {
+if (minute2<0 || minute2 > 59) {
 alert ("Minute of End Time must be between 0 and 59");
 return false;
 }
-if (second<0 || second > 59) {
-alert ("Second of End Time must be between 0 and 59");
+if (hour2 <= hour1) {
+alert("Hour of End Time must be greater than Hour of Start Time");
 return false;
 }
 
@@ -107,15 +105,18 @@ return false;
 return true;
 }
 </script>
-<br/>
-<openmrs:require privilege="Manage DMS Activate Unit" otherwise="/login.htm" redirect="/module/dms/activateUnit.form" />
-<%@ include file="../page/localHeader.jsp" %>
+<br />
+<openmrs:require privilege="Manage DMS Activate Unit"
+	otherwise="/login.htm" redirect="/module/dms/activateUnit.form" />
+<%@ include file="../page/localHeader.jsp"%>
 <h2>Activate Unit</h2>
-<form id="unitActivateForm" method="POST" onsubmit="javascript:return validate();">
+<form id="unitActivateForm" method="POST"
+	onsubmit="javascript:return validate();">
 	<table>
 		<tr>
 			<td>Unit No</td>
-			<td><input type="text" id="unitno" name="unitno"></td>
+			<td><input type="text" id="unitno" name="unitno" size="5">
+			</td>
 		</tr>
 		<tr></tr>
 		<tr>
@@ -125,7 +126,8 @@ return true;
 					<c:forEach items="${cnamel}" var="cnl">
 						<option value="${cnl.name}">${cnl.name}</option>
 					</c:forEach>
-			</select></td>
+			</select>
+			</td>
 			<td></td>
 
 			<td>Day</td>
@@ -138,8 +140,7 @@ return true;
 					<option value="Friday">Friday</option>
 					<option value="Saturday">Saturday</option>
 					<option value="Sunday">Sunday</option>
-			</select>
-			</td>
+			</select></td>
 			<td></td>
 			<td></td>
 			<td></td>
@@ -149,18 +150,19 @@ return true;
 			<td></td>
 			<td></td>
 			<td>Start Time</td>
-			<td><input type="text" id="starttime" name="starttime"
-				value="00:00:00"></td>
+			<td><input type="text" id="starttime" name="starttime" size="5"
+				value="00:00">
+			</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>End Time</td>
-			<td><input type="text" id="endtime" name="endtime"
-				value="23:59:59"></td>
-			<td><font color="#FF0000">Enter Time in 24 hour
-					format(Ex:09:32:56)</font>
+			<td><input type="text" id="endtime" name="endtime" size="5"
+				value="23:59">
 			</td>
+			<td><font color="#FF0000">Enter Time in 24 hour
+					format(Ex:HH:mm)</font></td>
 		</tr>
 		<tr></tr>
 		<%--
@@ -171,9 +173,11 @@ return true;
 		--%>
 		<tr></tr>
 		<tr>
-			<td><input type="submit" value="Activate"></td>
+			<td><input type="submit" value="Activate">
+			</td>
 			<td><input type="button" value="Reset"
-				onclick="window.location.href=window.location.href"></td>
+				onclick="window.location.href=window.location.href">
+			</td>
 		</tr>
 	</table>
 </form>
