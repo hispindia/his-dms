@@ -150,16 +150,36 @@ return true;
 			<td></td>
 			<td></td>
 			<td>Start Time</td>
-			<td><input type="text" id="starttime" name="starttime" size="5"
-				value="00:00">
+			<td>
+				<div>
+					<input type="text" id="starttime" name="starttime" size="5"
+						value="00:00">
+					<script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#starttime').timepicker({
+                                showAnim: 'blind'
+                            });
+                        });
+                    </script>
+				</div>
 			</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>End Time</td>
-			<td><input type="text" id="endtime" name="endtime" size="5"
-				value="23:59">
+			<td>
+				<div>
+					<input type="text" id="endtime" name="endtime" size="5"
+						value="23:59">
+					<script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#endtime').timepicker({
+                                showAnim: 'blind'
+                            });
+                        });
+                   </script>
+				</div>
 			</td>
 			<td><font color="#FF0000">Enter Time in 24 hour
 					format(Ex:HH:mm)</font></td>

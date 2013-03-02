@@ -168,16 +168,34 @@ jQuery(document).ready(function(){
 			<td></td>
 			<td></td>
 			<td>Start Time</td>
-			<td><input type="text" id="starttime" name="starttime" size="5"
-				value="${dmsOpdUnit.startTime}">
+			<td><div>
+					<input type="text" id="starttime" name="starttime" size="5"
+						value="${dmsOpdUnit.startTime}">
+					<script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#starttime').timepicker({
+                                showAnim: 'blind'
+                            });
+                        });
+                    </script>
+				</div>
 			</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>End Time</td>
-			<td><input type="text" id="endtime" name="endtime" size="5"
-				value="${dmsOpdUnit.endTime}">
+			<td><div>
+					<input type="text" id="endtime" name="endtime" size="5"
+						value="${dmsOpdUnit.endTime}">
+					<script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#endtime').timepicker({
+                                showAnim: 'blind'
+                            });
+                        });
+                   </script>
+				</div>
 			</td>
 			<td><font color="#FF0000">Enter Time in 24 hour
 					format(Ex:HH:mm)</font></td>
