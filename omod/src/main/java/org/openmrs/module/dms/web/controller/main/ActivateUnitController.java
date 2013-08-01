@@ -75,20 +75,9 @@ public class ActivateUnitController {
 		String day = request.getParameter("selday");
 		String starttime = request.getParameter("starttime");
 		String endtime = request.getParameter("endtime");
-		String starttimep1 = starttime.substring(0, 2);
-		String starttimep2 = starttime.substring(3, 5);
-		String endtimep1 = endtime.substring(0, 2);
-		String endtimep2 = endtime.substring(3, 5);
-		if (starttimep1.equals("00")) {
-			starttime = "0:" + starttimep2 + ":00";
-		} else {
-			starttime = starttime + ":00";
-		}
-		if (endtimep1.equals("00")) {
-			endtime = "0:" + endtimep2 + ":00";
-		} else {
-			endtime = endtime + ":00";
-		}
+		
+		starttime = starttime + ":00";
+		endtime = endtime + ":00";
 		
 		ConceptName opdconid = dmsService.getOpdConcepIdByName(opdname);
 		
@@ -112,20 +101,9 @@ public class ActivateUnitController {
 			String day2 = request.getParameter("selday");
 			String starttime2 = request.getParameter("starttime");
 			String endtime2 = request.getParameter("endtime");
-			String starttime2p1 = starttime2.substring(0, 2);
-			String starttime2p2 = starttime2.substring(3, 5);
-			String endtime2p1 = endtime2.substring(0, 2);
-			String endtime2p2 = endtime2.substring(3, 5);
-			if (starttime2p1.equals("00")) {
-				starttime2 = "0:" + starttime2p2 + ":00";
-			} else {
-				starttime2 = starttime2 + ":00";
-			}
-			if (endtime2p1.equals("00")) {
-				endtime2 = "0:" + endtime2p2 + ":00";
-			} else {
-				endtime2 = endtime2 + ":00";
-			}
+			
+			starttime2 = starttime2 + ":00";
+			endtime2 = endtime2 + ":00";
 			
 			ConceptName opdconid2 = dmsService.getOpdConcepIdByName(opdname2);
 			
