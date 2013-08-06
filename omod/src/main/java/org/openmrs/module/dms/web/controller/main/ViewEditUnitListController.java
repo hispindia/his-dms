@@ -37,7 +37,6 @@ public class ViewEditUnitListController {
 	public String showList(Model model) {
 		
 		DmsService dmsService = Context.getService(DmsService.class);
-		DmsOpdUnit dmsOpdUnit = new DmsOpdUnit();
 		List<DmsOpdUnit> dmsopdunits = dmsService.getDmsOpdList();
 		model.addAttribute("dmsopdunitls", dmsopdunits);
 		return "/module/dms/page/viewEditUnitList";
